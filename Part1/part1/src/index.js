@@ -51,7 +51,7 @@ const App = () => {
       <Content  
         task1={part1.name} exer1={part1.excersises} 
         task2={part2.name} exer2={part2.excersises}
-        task3={part3.name} exer3={part3.excersisesises3}
+        task3={part3.name} exer3={part3.excersises}
       />
       <Total exercises1={part1.excersises} exercises2={part2.excersises} exercises3={part3.excersises}/>
     </div>
