@@ -1,71 +1,40 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
+import React, {useState} from 'react'
+import ReactDOM from 'react-dom'
 
-const Part = (props) => {
-    
-    return(
-      <>
-        <p>
-          {props.part} {props.exercises}
-        </p>
-      </>
-    )  
-}
 
-const Header = (props) =>{
-  return(
-    <>
-      <h1>{props.course}</h1>
-    </>
-  )
-}
-const Content = (props) =>{
-  let parts = props.parts
-  return(
-    <>
-      <Part part={parts[0].name} exercises={parts[0].exercises}/>
-      <Part part={parts[1].name} exercises={parts[1].exercises}/>
-      <Part part={parts[2].name} exercises={parts[2].exercises}/>
-    </>
-  )
-}
-const Total = (props) =>{
-  let parts = props.parts
-  return(
-    <>
-      <p>Number of exercises {parts[0].exercises + parts[1].exercises +parts[2].exercises} </p>
-    </>
-  )
-}
+const Button = ({text, hadleClick})  => (
+  <button onClick= {hadleClick}>{text}</button>
+)
 
-const App = () =>{
+const App = () => {
 
-  
-  const course = {
-    name: 'Half Stack application development',
-    parts : [
-      {
-        name: 'Fundamentals of React',
-        exercises:10
-      },
-      {
-        name: 'Using props to pass data',
-        exercises:7
-      },
-      {
-        name: 'State component',
-        exercises:14
-      }
-    ]
-  }
+  const [good, setGood] = useState(0)
+  const [neutral,setNeutral] = useState(0)
+  const [bad, setBad] = useState(0)
+
+  const section = "Give feedback"
+  const soncondaryTitle = "Statistics"
+
+  const goodCoffe = (value) => () => setGood(value)
+  const neutralCoffe = (value) => () => setNeutral(value)
+  const goodBad = (value) => () => setBad(value)
 
   return(
     <div>
-      <Header course={course.name}/>
-      <Content parts={course.parts} />      
-      <Total parts={course.parts} />
+      <h2>{section}</h2>
+      <Button hadleClick={goodCoffe(good +1)}text="good"/>
+      <Button hadleClick={neutralCoffe(neutral + 1)}text="neutral"/>
+      <Button hadleClick={goodBad(bad + 1)}text="bad"/>
+      <br></br>
+      <h2>{soncondaryTitle}</h2>
+      <p>Good {good}</p>
+      <p>Neutral {neutral}</p>
+      <p>Bad {bad}</p>
+    
     </div>
   )
-
 }
-ReactDOM.render(<App />, document.getElementById('root'))
+
+ReactDOM.render (
+  <App/>, document.getElementById('root')
+)
