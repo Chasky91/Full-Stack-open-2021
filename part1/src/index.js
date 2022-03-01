@@ -39,6 +39,9 @@ const Averge =({positiveComent, negativeCommnet, allComents}) => {
 
 const Statitics = (props) =>{
   let {all, good, bad, neutral} = props
+  if(all===0){
+    return <p>No feedback given</p>
+  }
   return (
     <>
       <p>Good {good}</p>
