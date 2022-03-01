@@ -37,6 +37,20 @@ const Averge =({positiveComent, negativeCommnet, allComents}) => {
   )
 }
 
+const Statitics = (props) =>{
+  let {all, good, bad, neutral} = props
+  return (
+    <>
+      <p>Good {good}</p>
+      <p>Neutral {neutral}</p>
+      <p>Bad {bad}</p>
+      <AllComents allClicks={all}/>
+      <Averge positiveComent={good} negativeCommnet={bad} allComents={all}/>
+      <Positive allNumber={all} goodNumber={good}/>
+    </>
+  )
+}
+
 const App = () => {
 
   const [good, setGood] = useState(0)
@@ -68,13 +82,8 @@ const App = () => {
       <Button hadleClick={neutralCoffe(neutral + 1)}text="neutral"/>
       <Button hadleClick={badCoffe(bad + 1)}text="bad"/>
       <br></br>
-      <h2>{soncondaryTitle}</h2>
-      <p>Good {good}</p>
-      <p>Neutral {neutral}</p>
-      <p>Bad {bad}</p>
-      <AllComents allClicks={all}/>
-      <Averge positiveComent={good} negativeCommnet={bad} allComents={all}/>
-      <Positive allNumber={all} goodNumber={good}/>
+      <h2>{soncondaryTitle}</h2>      
+      <Statitics all={all} good={good} bad={bad} neutral={neutral}/>
     </div>
   )
 }
