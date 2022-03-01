@@ -6,38 +6,56 @@ const Button = ({text, hadleClick})  => (
   <button onClick= {hadleClick}>{text}</button>
 )
 
-const Statistic = ({text, value}) => {
-  return <p>{text} {value}</p>
+const TrTable = ({text1, text2}) => {
+  return (
+    <tr>
+      <td>{text1}</td>
+      <td>  {text2}</td> 
+    </tr> 
+  )
 }
 
+const Statistic = ({text, value}) => {
+  return (
+    <>
+      <TrTable text1={text} text2={value} />
+    </>
+  )
+}
+
+
+
+
 const AllComents = ({allClicks}) => (
-  <div> All {allClicks}</div>
+  <>
+    <TrTable text1="All" text2={allClicks} />
+  </>
 )
 
+
 const Positive = ({allNumber, goodNumber}) => {
+
   if(allNumber>0)
   {
     return(
-      <p>Positive {(goodNumber*100)/allNumber} %</p>
+      <>
+        <TrTable text1="Positive" text2={((goodNumber*100)/allNumber)} />
+      </>
     )    
   }
-  return <p>Positive 0</p>  
+  return ( 
+    <TrTable text1="Positive" text2="0 %" />
+  )
 }
 
 const Averge =({positiveComent, negativeCommnet, allComents}) => {
 
   let promedio = (positiveComent-negativeCommnet)/allComents
-  if(allComents === 0){
-    return (  
-      <div>
-        <p>average 0</p>
-      </div>
-    )
-  }
+  
   return (  
-    <div>
-      <p>average {promedio}</p>
-    </div>
+    <>
+      <TrTable text1="average" text2={promedio}/>
+    </> 
   )
 }
 
@@ -48,13 +66,18 @@ const Statitics = (props) =>{
   }
   return (
     <>
-      <Statistic text="Good" value={good}/>
-      <Statistic text="Neutral" value={neutral}/>
-      <Statistic text="Bad" value={bad}/>
+      <table>
+        <tbody>
+          <Statistic text="Good" value={good}/>
+          <Statistic text="Neutral" value={neutral}/>
+          <Statistic text="Bad" value={bad}/>
+        
 
-      <AllComents allClicks={all}/>
-      <Averge positiveComent={good} negativeCommnet={bad} allComents={all}/>
-      <Positive allNumber={all} goodNumber={good}/>
+          <AllComents allClicks={all}/>
+          <Averge positiveComent={good} negativeCommnet={bad} allComents={all}/>
+          <Positive allNumber={all} goodNumber={good}/>
+        </tbody>
+      </table>
     </>
   )
 }
