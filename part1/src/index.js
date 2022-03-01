@@ -6,6 +6,10 @@ const Button = ({text, hadleClick})  => (
   <button onClick= {hadleClick}>{text}</button>
 )
 
+const Statistic = ({text, value}) => {
+  return <p>{text} {value}</p>
+}
+
 const AllComents = ({allClicks}) => (
   <div> All {allClicks}</div>
 )
@@ -44,9 +48,10 @@ const Statitics = (props) =>{
   }
   return (
     <>
-      <p>Good {good}</p>
-      <p>Neutral {neutral}</p>
-      <p>Bad {bad}</p>
+      <Statistic text="Good" value={good}/>
+      <Statistic text="Neutral" value={neutral}/>
+      <Statistic text="Bad" value={bad}/>
+
       <AllComents allClicks={all}/>
       <Averge positiveComent={good} negativeCommnet={bad} allComents={all}/>
       <Positive allNumber={all} goodNumber={good}/>
